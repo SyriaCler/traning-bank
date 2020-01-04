@@ -1,11 +1,31 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+import { ContentComponent } from './content/content.component';
+import { CadastroClientesComponent } from './cadastro-clientes/cadastro-clientes.component';
+import { CadastroConcluidoComponent } from './cadastro-concluido/cadastro-concluido.component';
+import { HomeLogadaComponent } from './home-logada/home-logada.component';
+import { AuthGuard } from 'auth.guard';
+import { AcessoNegadoComponent } from './acesso-negado/acesso-negado.component';
+import { LoginComponent } from './login/login.component';
+import { ModalNotCadastroComponent } from './modal-not-cadastro/modal-not-cadastro.component';
 
-
-const routes: Routes = [];
+const routes: Routes = [
+{ path: '', component: ContentComponent },
+{ path: 'cadastro-clientes', component: CadastroClientesComponent },
+{ path: 'cadastro-concluido', component: CadastroConcluidoComponent },
+{ path: 'home-logada', component: HomeLogadaComponent, canActivate: [AuthGuard] },
+{ path: 'acesso-negado', component: AcessoNegadoComponent},
+{ path: 'login', component: LoginComponent},
+{ path: 'modal-not-cadastro', component: ModalNotCadastroComponent}
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+imports: [
+CommonModule,
+RouterModule.forRoot(routes)
+],
+declarations: [],
+exports: [RouterModule]
 })
 export class AppRoutingModule { }
